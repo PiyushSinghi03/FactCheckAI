@@ -13,8 +13,8 @@ from transformers import BertTokenizer, BertForSequenceClassification
 model_name = "bert-base-uncased"  # Or your fine-tuned model if uploaded to HF hub
 
 # Load tokenizer and model directly from Hugging Face
-tokenizer = BertTokenizer.from_pretrained(bert_fake_news_model)
-model = BertForSequenceClassification.from_pretrained(bert_fake_news_model)
+tokenizer = BertTokenizer.from_pretrained(tokenizer_path)
+model = BertForSequenceClassification.from_pretrained(model_path)
 
 try:
     model = BertForSequenceClassification.from_pretrained(tokenizer_path)
@@ -112,5 +112,6 @@ if __name__ == "__main__":
     if not news_articles and not fact_check_articles:
         print("\n⚠️ No trusted sources found! Running NLP analysis...\n")
         print(f"🤖 AI Analysis: {classify_news(query)}")
+
 
 
