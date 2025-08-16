@@ -7,10 +7,15 @@ from transformers import BertTokenizer, BertForSequenceClassification, pipeline
 from safetensors.torch import load_file
 
 # Load tokenizer & model
-tokenizer_path = "bert_fake_news_model"
-tokenizer = BertTokenizer.from_pretrained(tokenizer_path)
+from transformers import BertTokenizer, BertForSequenceClassification
 
-model_path = "bert_fake_news_model/model.safetensors"
+# Replace local path with Hugging Face model name
+model_name = "bert-base-uncased"  # Or your fine-tuned model if uploaded to HF hub
+
+# Load tokenizer and model directly from Hugging Face
+tokenizer = BertTokenizer.from_pretrained(model_name)
+model = BertForSequenceClassification.from_pretrained(model_name)
+
 try:
     model = BertForSequenceClassification.from_pretrained(tokenizer_path)
     model.load_state_dict(load_file(model_path))
@@ -107,3 +112,4 @@ if __name__ == "__main__":
     if not news_articles and not fact_check_articles:
         print("\n⚠️ No trusted sources found! Running NLP analysis...\n")
         print(f"🤖 AI Analysis: {classify_news(query)}")
+
