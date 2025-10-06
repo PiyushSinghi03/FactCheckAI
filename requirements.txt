@@ -4,6 +4,5 @@ tiktoken
 beautifulsoup4
 streamlit
 langchain
-langchain-core
 requests
-difflib3
+
